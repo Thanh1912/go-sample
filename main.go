@@ -21,7 +21,7 @@ func main() {
 		log.Fatal(err)
 	}
 	//fmt.Printf("%0x\n", ciphertext)
-	writeFile("ciphertext.txt", string(ciphertext))
+	writeFile("ciphertext.txt", fmt.Sprintf("%0x\n", ciphertext))
 	result, err := decrypt(key, ciphertext)
 	if err != nil {
 		log.Fatal(err)
