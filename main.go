@@ -20,15 +20,23 @@ func main() {
 	if err != nil {
 		log.Fatal(err)
 	}
-	//fmt.Printf("%0x\n", ciphertext)
-	writeFile("ciphertext.txt", fmt.Sprintf("%0x\n", ciphertext))
-	result, err := decrypt(key, ciphertext)
+	data := base64.StdEncoding.EncodeToString(ciphertext)
+	err = writeFile("ciphertext.txt", data)
 	if err != nil {
 		log.Fatal(err)
 	}
-	//fmt.Printf("%s\n", result)
-	writeFile("decrypt.patch", string(result))
 }
+
+/*func main() {
+	key := []byte("1234567890128888") // 32 bytes or 16 bytes
+	plaintext := []byte("base64 here")
+	data, err := base64.StdEncoding.DecodeString(string(plaintext))
+	result, err := decrypt(key, data)
+	if err != nil {
+		log.Fatal(err)
+	}
+	writeFile("decrypt.patch", string(result))
+}*/
 
 func writeFile(filename string, content string) error {
 	// Open the file for writing, create it if it doesn't exist, truncate it if it does
